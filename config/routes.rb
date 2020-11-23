@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :designs
+      get "/designs/:id/comments", to: "designs#comments"
+      post "/designs/:id/comments", to: "comments#create"
     end
   end
 

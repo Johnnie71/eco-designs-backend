@@ -6,14 +6,15 @@ class Api::V1::CommentsController < ApplicationController
     end
 
     def create
-        comment = Comment.create!(comment_params)
+        comment = Comment.create!(com_params)
+        
         render json: comment
     end
 
     def update
         comment = Comment.find(params[:id])
 
-        comment.update!(comment_params)
+        comment.update!(com_params)
 
         render json: comment
     end
@@ -25,9 +26,9 @@ class Api::V1::CommentsController < ApplicationController
     end
 
     private
-
-    def comment_params
-        params.require(:comment).permit(:user_id, :design_id, :comment)
+ 
+    def com_params
+        params.permit(:user_id, :design_id, :comment)
     end
 
 end

@@ -12,6 +12,7 @@ class Api::V1::UsersController < ApplicationController
 
     def create
         user = User.create!(user_params)
+        
         render json: user
     end
 
@@ -58,6 +59,6 @@ class Api::V1::UsersController < ApplicationController
     private
     
     def user_params
-        params.require(:user).permit(:username, :name, :bio, :profile_pic, :password_digest, :designs)
+        params.require(:user).permit(:username, :name, :bio, :profile_pic, :password_digest)
     end
 end

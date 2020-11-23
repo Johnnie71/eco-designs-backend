@@ -12,6 +12,7 @@ class Api::V1::DesignsController < ApplicationController
 
     def create
         design = Design.create!(design_params)
+
         render json: design
     end
 
@@ -29,10 +30,17 @@ class Api::V1::DesignsController < ApplicationController
         render json: {}
     end
 
+    def comments 
+        # grab user, grab comments and return user's comments
+        design = Design.find(params[:id])
+        comments = design.comments
+        render json: comments
+    end 
+
     private
 
     def design_params
-        params.require(:design).permit(:title, :main_img, :img_1, :img_2, :img_3, :img_4, :img_5, :img_6, :description, :category)
+        params.require(:design).permit(:user_id, :title, :main_img, :img_1, :img_2, :img_3, :img_4, :img_5, :img_6, :description, :category)
     end
 
 end
