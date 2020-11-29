@@ -10,6 +10,7 @@
 User.destroy_all
 Comment.destroy_all
 Design.destroy_all
+FollowJoin.destroy_all
 
 user1 = User.create(username: "johnnie71", name: "Johnnie", profile_pic: "https://ca.slack-edge.com/T02MD9XTF-U019CV1LK3L-c0e3da1adb78-512", bio: "Architectural Designer with love for sustainability. It's our job as human beings to protect our planet from climate change and lead the way in green design!", password_digest: "abc123")
 user2 = User.create(username: "marcohernan", name:"Marco", profile_pic: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/96244464_10100576201162073_3060356677359370240_n.jpg?_nc_cat=105&ccb=2&_nc_sid=730e14&_nc_ohc=8yY8hdjOWFsAX82d4bX&_nc_ht=scontent-lga3-1.xx&oh=aec0d3f8c440ce56ffc769a62f2a7461&oe=5FDC4ADC", bio: "Architectural student with a passion for innovative technologies. Background in Computer Tech as well.", password_digest: "abc123")
@@ -26,5 +27,12 @@ comment1 = Comment.create(user_id: user1.id, design_id: design3.id, comment: "I 
 comment2 = Comment.create(user_id: user2.id, design_id: design5.id, comment: "So Cool!")
 comment3 = Comment.create(user_id: user3.id, design_id: design3.id, comment: "Amazing!")
 comment4 = Comment.create(user_id: user3.id, design_id: design1.id, comment: "WOW!! We should collab!")
+
+3.times do 
+    User.all.each do |u|
+      FollowJoin.create(following_id: u.id, followed_id: User.all.filter{|u2| u2.id != u.id }.sample.id)
+    end
+  
+  end
 
 
