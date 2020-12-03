@@ -1,13 +1,13 @@
 class Api::V1::DesignsController < ApplicationController
 
     def index
-        designs = Design.all
+        designs = Design.all.sort_by {|design| design.created_at}
         render json: designs
     end
 
     def show
         design = Design.find(params[:id])
-        render json: design, except: [:created_at, :updated_at]
+        render json: design, except: [:updated_at]
     end
 
     def create
