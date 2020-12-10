@@ -40,12 +40,32 @@ class Api::V1::UsersController < ApplicationController
         render json: designs
     end 
 
+    def follows 
+        # grab user, grab follows and return user's follows
+        user = User.find(params[:id])
+        follows = user.following_relationships
+        render json: follows
+    end 
+
     def comments 
         # grab user, grab comments and return user's comments
         user = User.find(params[:id])
         comments = user.comments
         render json: comments
     end 
+
+    # def feed
+    #     # find the user
+    #   user = User.find(params[:id])
+    #     # the the ids of the ppl user is following
+    #   ids = user.isFollowing.map { |user| user.id }
+    #     # I wanted to use .where and .order because I think they are more optimal than enums
+    #     # This should return posts that have a matching user_id column prop to the array of ids and then order them desending by creation date followed by number of likes if the created by is equal. It limits results to 100
+    #   designs = Design.where(user_id: ids).group(:id).order('created_at DESC').limit(100)
+
+    #   render json: designs, status: :accepted
+  
+    # end
 
     # def login
     # end

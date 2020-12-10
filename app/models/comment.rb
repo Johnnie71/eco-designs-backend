@@ -4,4 +4,5 @@ class Comment < ApplicationRecord
 
     accepts_nested_attributes_for :user
 
+    validates :comment, presence: true
 end
