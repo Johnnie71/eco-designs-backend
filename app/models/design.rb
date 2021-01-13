@@ -1,6 +1,6 @@
 class Design < ApplicationRecord
-    belongs_to :user, dependent: :destroy
-    has_many :comments, dependent: :destroy
+    belongs_to :user
+    has_many :comments
 
     accepts_nested_attributes_for :user
     accepts_nested_attributes_for :comments
